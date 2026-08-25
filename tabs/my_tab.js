@@ -2,6 +2,10 @@
 
 const path = require('path');
 const { GUI, TABS } = require('./../js/gui');
+const i18n = require('./../js/localization');
+
+require('./osd');
+require('./sensors');
 
 TABS.my_tab = {};
 
@@ -12,27 +16,19 @@ TABS.my_tab.initialize = function (callback) {
 
     GUI.load(path.join(__dirname, "my_tab.html"), function () {
         
-        if (typeof TABS.osd !== 'undefined' && TABS.osd.initialize) {
-            TABS.osd.initialize(function() {
-                console.log('OSD initialized inside my_tab');
-                if (typeof TABS.osd.updateData === 'function') {
-                    TABS.osd.updateData();
-                }
-            });
+        try {
+            if (typeof TABS.osd !== 'undefined' && TABS.osd.initialize) {
+                TABS.osd.initialize(function() {
+                    console.log('OSD initialized inside my_tab');
+                });
+            }
+        } catch (e) {
+            console.warn('OSD init error (probably no connection):', e.message);
         }
 
-        if (typeof TABS.sensors !== 'undefined' && TABS.sensors.initialize) {
-            TABS.sensors.initialize(function() {
-                console.log('SENSORS initialized inside my_tab');
-                if (typeof TABS.sensors.updateData === 'function') {
-                    TABS.sensors.updateData();
-                }
-            });
-        }
+        i18n.localize();
 
         setupSubtabSwitching();
-
-        subscribeToDataUpdates();
 
         GUI.content_ready(callback);
     });
@@ -59,19 +55,6 @@ function setupSubtabSwitching() {
     showSubtab('osd-content');
 }
 
-function subscribeToDataUpdates() {
-    $(document).on('msp-data-update', function() {
-        console.log('Data update received in my_tab');
-        if (typeof TABS.osd !== 'undefined' && typeof TABS.osd.updateData === 'function') {
-            TABS.osd.updateData();
-        }
-        if (typeof TABS.sensors !== 'undefined' && typeof TABS.sensors.updateData === 'function') {
-            TABS.sensors.updateData();
-        }
-    });
-}
-
 TABS.my_tab.cleanup = function (callback) {
-    $(document).off('msp-data-update');
     if (callback) callback();
 };

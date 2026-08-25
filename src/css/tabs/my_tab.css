@@ -1,27 +1,22 @@
-.tab-my_tab {
-    padding: 15px;
-    height: 100%;
-}
-
-.tab-my_tab .tab-header {
+.tab_my_tab .tab-header {
     border-bottom: 2px solid #37A8DB;
     padding-bottom: 10px;
     margin-bottom: 15px;
 }
 
-.tab-my_tab .tab-title {
+.tab_my_tab .tab-title {
     font-size: 24px;
     font-weight: bold;
     color: #37A8DB;
 }
 
-.tab-my_tab .subtab-menu {
+.tab_my_tab .subtab-menu {
     width: 150px;
     border-right: 1px solid #e0e0e0;
     padding: 10px 0;
 }
 
-.tab-my_tab .subtab-header-label {
+.tab_my_tab .subtab-header-label {
     padding: 10px 15px;
     margin: 2px 0;
     cursor: pointer;
@@ -31,23 +26,23 @@
     color: #555;
 }
 
-.tab-my_tab .subtab-header-label:hover {
+.tab_my_tab .subtab-header-label:hover {
     background-color: #e8f4f8;
     color: #37A8DB;
 }
 
-.tab-my_tab .subtab-header-label.active {
+.tab_my_tab .subtab-header-label.active {
     background-color: #37A8DB;
     color: white;
     box-shadow: 0 2px 4px rgba(55, 168, 219, 0.3);
 }
 
-.tab-my_tab .subtab-header-label i {
+.tab_my_tab .subtab-header-label i {
     margin-right: 10px;
     font-size: 16px;
 }
 
-.tab-my_tab .subtab-content {
+.tab_my_tab .subtab-content {
     padding: 15px;
     background: #fafafa;
     border-radius: 4px;
@@ -55,11 +50,11 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .tab-my_tab .tab-content {
+    .tab_my_tab .tab-content {
         flex-direction: column !important;
     }
     
-    .tab-my_tab .subtab-menu {
+    .tab_my_tab .subtab-menu {
         width: 100% !important;
         border-right: none !important;
         border-bottom: 1px solid #e0e0e0;
@@ -68,22 +63,10 @@
         flex-wrap: wrap;
     }
     
-    .tab-my_tab .subtab-header-label {
+    .tab_my_tab .subtab-header-label {
         flex: 1;
         min-width: 100px;
         text-align: center;
     }
-    .tab_my_tab a:hover::after {
-        content: "OSD & SENSORS";
-        position: absolute;
-        background: #333;
-        color: #fff;
-        padding: 4px 8px;
-        border-radius: 4px;
-        font-size: 12px;
-        margin-left: 10px;
-        white-space: nowrap;
-        z-index: 1000;
-}
 
 }
