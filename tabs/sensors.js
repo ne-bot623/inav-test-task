@@ -564,6 +564,7 @@ TABS.sensors.initialize = function (callback) {
     });
 };
 
+
 TABS.sensors.cleanup = function (callback) {
     CONFIGURATOR.connection.emptyOutputBuffer();
 
